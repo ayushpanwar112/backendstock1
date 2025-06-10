@@ -19,6 +19,10 @@ export const protectRoute = (req, res, next) => {
     console.log("User info:", req.user); // Log user info for debugging
     next();
   } catch (err) {
+    res.status(401).json({
+      status: "401",
+      message: "Unauthorized",
+    });
     return next(new errorResponse("Unauthorized", 401));
   }
 };
